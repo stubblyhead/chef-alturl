@@ -262,6 +262,11 @@ class Chef
           Chef::Config[:knife][:bootstrap_vault_item][vault] ||= []
           Chef::Config[:knife][:bootstrap_vault_item][vault].push(item)
           Chef::Config[:knife][:bootstrap_vault_item]
+
+      option :alt_server_url,
+        :long        => "--alt-server-url URL",
+        :description => 'An alternate URL for the node to reach the Chef server with'
+
         }
 
       def initialize(argv = [])

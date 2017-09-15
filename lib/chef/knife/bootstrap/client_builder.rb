@@ -110,7 +110,7 @@ class Chef
 
         # @return [String] chef server url from the Chef::Config
         def chef_server_url
-          chef_config[:chef_server_url]
+          knife_config[:alt_server_url] || chef_config[:chef_server_url]
         end
 
         # Accesses the run_list and coerces it into an Array, changing nils into
