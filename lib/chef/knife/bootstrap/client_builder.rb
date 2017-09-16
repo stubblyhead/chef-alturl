@@ -110,7 +110,11 @@ class Chef
 
         # @return [String] chef server url from the Chef::Config
         def chef_server_url
-          knife_config[:alt_server_url] || chef_config[:chef_server_url]
+          chef_config[:chef_server_url]
+        end
+
+        def alt_server_url
+          knife_config[:alt_server_url]
         end
 
         # Accesses the run_list and coerces it into an Array, changing nils into
@@ -158,6 +162,9 @@ class Chef
               (knife_config[:tags] || []).each do |tag|
                 node.tags << tag
               end
+              #if defined?(alt_server_url) && alt_server_url != ''
+              #@client_rest = Chef::ServerAPI.new(alt_server_url, :client_name => node_name, :signing_key_filename => client_path)
+              #end
               node
             end
         end
