@@ -162,9 +162,6 @@ class Chef
               (knife_config[:tags] || []).each do |tag|
                 node.tags << tag
               end
-              #if defined?(alt_server_url) && alt_server_url != ''
-              #@client_rest = Chef::ServerAPI.new(alt_server_url, :client_name => node_name, :signing_key_filename => client_path)
-              #end
               node
             end
         end
