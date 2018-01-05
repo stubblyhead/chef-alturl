@@ -747,6 +747,19 @@ describe Chef::Knife::Bootstrap do
     expect(stderr.string).to match(/ERROR:.+FQDN or ip/)
   end
 
+  describe "when --alt-server-url option is given in command line" do
+    let(:options) { ["--alt-server-url", "https://test.example.com/organization/default"] }
+    #let(:template_file) { File.expand_path(File.join(CHEF_SPEC_DATA, bootstrap, "bootstrap", "test.erb"))}
+    let(:rendered_template) do
+      knife.merge_configs
+      knife.render_template
+    end
+    it "renders the client.rb with given value for chef_server_url" do
+      #expect(rendered_template).to match(/https:\/\/test\.example\.com\/organization\/default/)
+      expect(rendered_template).to match(/chef_server_url/)
+    end
+  end
+
   describe "when running the bootstrap" do
     let(:knife_ssh) do
       knife.name_args = ["foo.example.com"]
